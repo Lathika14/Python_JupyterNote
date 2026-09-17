@@ -1,0 +1,115 @@
+import pandas as pd
+print("done")
+cs = pd.read_csv(r"")
+
+
+print(cs.to_string())
+# num --> convert str
+cs.shape
+cs.info()
+cs.dtypes
+cs.head(10) # top rows
+cs.tail(10) # last 10 rows
+#str la irukuradha int ah change panna mudiyadhu
+
+cs.describe()
+
+cs.columns
+
+#duplicate value (cleaning process)
+
+# null value
+
+cs.duplicate() # false na duplicate ila true na duplicate iruku
+
+cs.duplicate.sum() # count of duplicate
+
+cs.drop_duplicates()
+
+cs.isnull() #null value irulura place la true ilana false
+
+cs.isnull().sum() #only null count
+
+#unique value
+cs["item"].unique()
+
+#count wrong data
+
+# all duplicate values like null,duplicate we need to check each cell
+
+tr_count=0
+i_count=0
+q_count=0
+u_count=0
+t_count=0
+p_count=0
+l_count=0
+d_count=0
+
+#loc-->like index value
+#iloc-->lable based value
+
+for i in cs.index:
+    if cs.loc[i,"transaction_id"]=="unk" or cs.loc[i,"transaction_id"]=="error":
+        tr_count+=1
+    if cs.loc[i,"item"]in["unk","error"]:
+        i_count+=1
+    if cs.loc[i,"Quantity"]in["unk","error"]:
+        q_count+=1
+    if cs.loc[i,"price per unit"]in["unk","error"]:
+        u_count+=1
+    if cs.loc[i,"total spend"]in["unk","error"]:
+        t_count+=1
+    if cs.loc[i,"ipayment method"]in["unk","error"]:
+        p_count+=1
+    if cs.loc[i,"Location"]in["unk","error"]:
+        l_count+=1
+    if cs.loc[i,"Transation date"]in["unk","error"]:
+        d_count+=1
+print(f"""
+Transtion id {tr_count}
+item {i_count}
+quality {q_count}
+price per unit {u_count}
+total spend {t_count}
+payment {p_count}
+location {l_count}
+transtion date {d_count}
+""")
+
+#fillna --> NA replace the value
+
+# filling temp value nan,error,unk
+
+for i in cs.index:
+    if cs.loc[i,"item"]in["unk","error"]:
+        cs.loc[i,item]="0"
+cs.fillna({"item":"0"},inplace = True)
+print("replace in item done")
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
